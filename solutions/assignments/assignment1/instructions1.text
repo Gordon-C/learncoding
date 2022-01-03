@@ -75,10 +75,13 @@ We represent a hand as a list of cards (i.e. integers). For example, the list [8
 Complete the following steps in order to finish the assignment. After each step, more tests should pass. At the end, every test should pass. If for some reason a test is not passing, you will need to debug your code. All code changes should occur only in \texttt{blackjack.py}
 
 \begin{enumerate}
-    \item Implement the \texttt{score\_card} function.
-    \item Implement the \texttt{score\_hand} function.
-    \item Implement the \texttt{will\_dealer\_hit} function.
-    \item Implement the \texttt{is\_bust\_hand} function.
-    \item Implement the \texttt{card\_suite\_to\_str} and \texttt{card\_name\_to\_str} functions.
+    \item Implement the \texttt{score\_card} function. Remember to take into account our 0-51 representation of cards. 
+    \item Implement the \texttt{score\_hand} function. Recall that the score of a hand is just the sum of the scores of each individual card in that hand.
+    \item Implement the \texttt{will\_dealer\_hit} function. In our version of Blackjack, the dealer should hit as long as their current score is less than 17.
+    \item Implement the \texttt{is\_bust\_hand} function. Recall that a busted hand is one whose score exceeds 21.
+    \item Implement the \texttt{card\_suite\_to\_str} and \texttt{card\_name\_to\_str} functions. Remember to take into account our 0-51 representation of cards.
 \end{enumerate}
+
+Once every test passes, make sure to celebrate your success by playing some Blackjack! The graphical interface of the game should have no defects after successful completion of the above steps.
+
 \end{document}
