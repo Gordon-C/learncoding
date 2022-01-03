@@ -41,6 +41,7 @@ def will_dealer_hit(hand):
 def is_bust_hand(hand):
     return score_hand(hand) > 21
 
+
 def card_suite_to_str(card):
     sector = card // 13
     if sector == 0:
@@ -51,6 +52,7 @@ def card_suite_to_str(card):
         return 'diamonds'
     else:
         return 'clubs'
+
 
 def card_name_to_str(card):
     value = (card % 13) + 1
@@ -77,6 +79,7 @@ def print_game_state(player_hand, dealer_hand, deck):
     dealer_hand_str = [card_to_str(card) for card in dealer_hand]
     print('[Dealer]: %s' % ', '.join(dealer_hand_str))
     print(cardprint.pretty_hand_str(dealer_hand_str))
+
 
 def play_game():
     deck = new_deck()

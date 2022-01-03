@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+\title{Assignment 1: Implement a Blackjack game engine}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Overview}
+In this assignment, we will put into practice concepts from the first few lessons to implement the core logic of Blackjack. In particular, we will work with:
+
+\begin{itemize}
+    \item if statements
+    \item functions 
+    \item loops
+    \item collections
+\end{itemize}
+
+\noindent Upon completion of the assignment, we will have a working Blackjack game. Good luck!
+
+
+\section{Rules of (simplified) Blackjack}
+Before getting to the code, it is important to familiarize ourselves with the rules of Blackjack. This section is relevant even for those that already know how to play Blackjack, because we will be making some simplifications.
+
+\subsection{Start of game and scoring}
+Our simplified game of Blackjack consists of 2 participants, the player and the dealer. The player is whoever will be interacting with our program, and the dealer will be simulated by code that we write. At the beginning of a game, each participant is dealt a hand consisting of 2 cards from a standard deck of 52 cards. A hand is associated with a score; a hand's score is computed as the sum of the values of the cards in the hand. For our purposes, the value of an ace will be 1\footnote{in traditional blackjack, the value of an ace is either 1 or 11 depending on what is most advantageous}, the value of cards 2-10 will just be that card's number, and the value of any face card is 10. For example, if a hand contains an ace of spades, a 6 of clubs, and queen of diamonds, the score of that hand is 1 + 6 + 10 = 17. The objective of the game for each participant is to obtain a hand whose score is closest to 21 without exceeding it. 
+
+\subsection{Player's turn}
+
+After the initial deal of hands, the player will go first. The player can choose to ``Hit" or ``Stay". If the player hits, they are dealt another card from the deck, and their hand's score is updated. The player can continue to hit as long as their score is at or below 21. If their score exceeds 21 after a hit, they have ``busted" and the dealer wins. At any point prior to busting, the player can choose to stay, and in this case their turn ends and it becomes the dealers turn.
+
+\subsection{Dealer's turn}
+The dealer's turn proceeds identically to the player's turn. They can choose to ``Hit" or ``Stay". If the dealer hits, they are dealt another card from the deck, and their hand's score is updated. The dealer can continue to hit as long as their score is at or below 21. If their score exceeds 21 after a hit, they have ``busted" and the player wins (assuming the player has not busted first). At any point prior to busting, the dealer can choose to stay, and in this case their turn ends and a winner must be determined based on hand scores.
+
+\subsection{Determining a winner}
+If any participant has busted, then the other participant wins. If neither participant has busted, and both have stayed, the winner is the one whose hand is closest to 21. If the player and dealer have the same score, the result is a tie.
+
+
+\section{Setup} 
+The files for this assignment can be obtained by cloning the \texttt{\href{https://github.com/Gordon-C/learncoding}{learncoding}} repository from GitHub. The relevant files can be found under the \texttt{learncoding/assignments/assignment1} directory. In particular, there are two python files which we will interact with: \texttt{blackjack.py} and \texttt{test\_blackjack.py}.
+
+\subsection{\texttt{blackjack.py}}
+The \texttt{blackjack.py} file contains the core logic of the game. It contains several \texttt{TODO} comments, which we will be responsible for implementing as part of the assignment. There is also logic to display the game graphically on the command line, but this part has been done for us.
+
+\subsection{\texttt{test\_blackjack.py}}
+The \texttt{test\_blackjack.py} file contains several tests for \texttt{blackjack.py}. In other words, if we implement \texttt{blackjack.py} correctly, all these tests should pass. During our debugging, we may need to refer to the contents of this file to figure out why a certain test is failing.
+
+\subsection{Running the game}
+To run the game, simply run the \texttt{blackjack.py} python program. This can be accomplished from the command line by changing into the \texttt{assignment1} directory, and executing the command \texttt{python3 blackjack.py} (substitute \texttt{python3} for whatever alias you have chosen for your python interpreter as appropriate). You can also run the program by opening the \texttt{blackjack.py} file in the Python IDLE, and navigating to Run Program\textgreater Run Program in the menu bar. 
+
+If this was successful, you should see a graphical display of a game of Blackjack show up in your terminal. It may have some slight visual oddities, but that's because we still need to implement the core functionality.
+
+\subsection{Testing and debugging the code}
+Although it is possible to manually test our code by running a new game, we can also test the code by running the \texttt{test\_blackjack.py} program. When executed, the \texttt{test\_blackjack.py} program outputs the results of several test cases to the terminal. Initially, most tests will fail as we have not yet implemented the core logic. As we implement more of the logic, more tests should pass.
+
+If you are unsure why a test is failing, note the test name and find its logic within \texttt{test\_blackjack.py}. Try to run through each line of the test in your head, and hopefully identify what in your implementation is causing the test to fail. This process is called debugging. 
+
+
+\section{Design}
+Before getting to the code, we describe how the existing code represents cards and hands. This will be helpful because the code we write will must interact with these abstract representations.
+
+\subsection{Cards}
+We represent a card as an integer between 0 and 51, inclusive. The first 13 integers correspond to the spades suite, the next 13 correspond to hearts, the next 13 correspond to diamonds, and the last 13 correspond to clubs. Within a suite, the first (lowest) integer corresponds to an ace, the second to a 2, the third to a 3, ..., and the last (highest) to a king. For example, the integer 24 represents the queen of hearts. 
+
+\subsection{Hands}
+We represent a hand as a list of cards (i.e. integers). For example, the list [8, 39] represents a hand consisting of a 9 of spades and an ace of clubs. 
+
+
+\section{Instructions} 
+Complete the following steps in order to finish the assignment. After each step, more tests should pass. At the end, every test should pass. If for some reason a test is not passing, you will need to debug your code. All code changes should occur only in \texttt{blackjack.py}
+
+\begin{enumerate}
+    \item Implement the \texttt{score\_card} function.
+    \item Implement the \texttt{score\_hand} function.
+    \item Implement the \texttt{will\_dealer\_hit} function.
+    \item Implement the \texttt{is\_bust\_hand} function.
+    \item Implement the \texttt{card\_suite\_to\_str} and \texttt{card\_name\_to\_str} functions.
+\end{enumerate}
+\end{document}
